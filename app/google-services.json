@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "944797816525",
+    "project_id": "authentication-kotlin-b3906",
+    "storage_bucket": "authentication-kotlin-b3906.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:944797816525:android:99978238940dc61bd0fb84",
+        "android_client_info": {
+          "package_name": "com.example.loginfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "944797816525-aj6kn1tgi1sbflh29q0l15k3k9h8js94.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZ73jaBir_FxsXqo8t1a96ct5tblmz-k8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "944797816525-aj6kn1tgi1sbflh29q0l15k3k9h8js94.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Login Firebase</string>
+    <string name="email_label_hint">Email</string>
+    <string name="password_label_hint">Password</string>
+    <string name="btn_login">Log In</string>
+    <string name="app_logo_description">Nutrity Logo</string>
+    <string name="new_email_label_hint">Email</string>
+    <string name="new_password_label_hint">Password</string>
+    <string name="confirm_password_label_hint">Confirm Password</string>
+    <string name="btn_create_account">Create Account</string>
+    <string name="register_text">Or, register below</string>
+    <string name="have_account_text">Do you already have an account?</string>
+</resources>
