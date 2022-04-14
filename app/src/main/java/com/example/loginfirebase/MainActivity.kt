@@ -4,12 +4,22 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.loginfirebase.databinding.MainActivityBinding
+import com.example.loginfirebase.uielements.Loading
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: MainActivityBinding
+
+    private lateinit var auth: FirebaseAuth
+
+    // Loading Dialog
+    private val loading = Loading(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +28,15 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        binding.createAccountLink.setOnClickListener { startCreateAccountFrame() }
+        // Initialize Firebase Auth
+        auth = Firebase.auth
+
+        with(binding) {
+            val emailValue = emailField.text.toString()
+            val passwordValue = passwordField.text.toString()
+            createAccountLink.setOnClickListener { startCreateAccountFrame() }
+            btnLogin.setOnClickListener { signIn(emailValue, passwordValue) }
+        }
     }
 
     private fun startCreateAccountFrame() {
@@ -34,7 +52,27 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "Sign In: $email")
         if(!validateForm()) return
 
+        loading.startDialog()
 
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener {
+                if(it.isSuccessful) {
+                    loading.isDismiss()
+                    redirectToHome()
+                } else {
+                    Log.w(TAG, "signInWithEmail:failure", it.exception)
+                    loading.isDismiss()
+                    Toast.makeText(this, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    private fun redirectToHome() {
+        val intent = Intent(this, HomeActivity::class.java).apply {
+            putExtra("user", binding.emailField.text.toString())
+        }
+        startActivity(intent)
     }
 
     private fun validateForm(): Boolean {
@@ -49,8 +87,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         val password = binding.passwordField.text.toString().trim()
-        if(TextUtils.isEmpty(email)) {
-            binding.emailField.error = "This field is required."
+        if(TextUtils.isEmpty(password)) {
+            binding.passwordField.error = "This field is required."
             valid = false
         } else {
             binding.passwordField.error = null

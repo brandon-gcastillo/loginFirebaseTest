@@ -10,4 +10,5 @@
     <string name="btn_create_account">Create Account</string>
     <string name="register_text">Or, register below</string>
     <string name="have_account_text">Do you already have an account?</string>
+    <string name="progress_loading">Loading...</string>
 </resources>
