@@ -11,4 +11,20 @@
     <string name="register_text">Or, register below</string>
     <string name="have_account_text">Do you already have an account?</string>
     <string name="progress_loading">Loading...</string>
+    <string name="signForm_helperText">This field is required.</string>
+    <string name="blank">&#160;</string>
+    <string name="password_dntMatch">Passwords must match. Try again.</string>
+    <string name="snackbar_dismiss">Dismiss</string>
+    <string name="email_verification">Please verify your account with the email sent to your mailbox.</string>
+    <!--  **** UserConfiguration Activity ****  -->
+    <string name="user_name">User Name</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="done">Done</string>
+    <string name="get_started">Let\'s Get Started!</string>
+    <!--  Fab buttons  -->
+    <string name="add_photo">Add a photo</string>
+    <string name="change_profile_pic">Change profile picture</string>
+    <!--  Generic texts  -->
+    <string name="next">Next</string>
 </resources>

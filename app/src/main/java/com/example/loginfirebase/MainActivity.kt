@@ -6,11 +6,19 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.toColor
+import androidx.core.widget.doOnTextChanged
 import com.example.loginfirebase.databinding.MainActivityBinding
 import com.example.loginfirebase.uielements.Loading
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+
+enum class ProviderType {
+    BASIC
+}
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,10 +40,24 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         with(binding) {
-            val emailValue = emailField.text.toString()
-            val passwordValue = passwordField.text.toString()
             createAccountLink.setOnClickListener { startCreateAccountFrame() }
-            btnLogin.setOnClickListener { signIn(emailValue, passwordValue) }
+            btnLogin.setOnClickListener {
+                val emailValue = emailField.text.toString()
+                val passwordValue = passwordField.text.toString()
+                signIn(emailValue, passwordValue)
+            }
+
+            emailField.setOnFocusChangeListener { _, hasFocus ->
+                if(hasFocus) {
+                    cleanErrors(emailField, emailFieldLayout)
+                }
+            }
+
+            passwordField.setOnFocusChangeListener { _, hasFocus ->
+                if(hasFocus) {
+                    cleanErrors(passwordField, passwordFieldLayout)
+                }
+            }
         }
     }
 
@@ -50,17 +72,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun signIn(email: String, password: String) {
         Log.d(TAG, "Sign In: $email")
-        if(!validateForm()) return
+        if(!validateForm(email, password)) return
 
         loading.startDialog()
 
         auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener {
-                if(it.isSuccessful) {
+            .addOnCompleteListener { task ->
+                if(task.isSuccessful) {
                     loading.isDismiss()
-                    redirectToHome()
+                    redirectToHome(task.result?.user?.email ?: "", ProviderType.BASIC)
                 } else {
-                    Log.w(TAG, "signInWithEmail:failure", it.exception)
                     loading.isDismiss()
                     Toast.makeText(this, "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
@@ -68,33 +89,50 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    private fun redirectToHome() {
+    private fun redirectToHome(email: String, providerType: ProviderType) {
         val intent = Intent(this, HomeActivity::class.java).apply {
-            putExtra("user", binding.emailField.text.toString())
+            putExtra("email", email)
+            putExtra("providerType", providerType.name)
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         }
         startActivity(intent)
+        this.finish()
     }
 
-    private fun validateForm(): Boolean {
+    private fun validateForm(
+        email: String,
+        password: String,
+    ): Boolean {
         var valid = true
 
-        val email = binding.emailField.text.toString().trim()
         if(TextUtils.isEmpty(email)) {
             binding.emailField.error = "This field is required."
+            binding.emailFieldLayout.helperText = getString(R.string.signForm_helperText)
+            binding.emailFieldLayout.isHelperTextEnabled = true
             valid = false
         } else {
             binding.emailField.error = null
+            binding.emailFieldLayout.helperText = getString(R.string.blank)
+            binding.emailFieldLayout.isHelperTextEnabled = false
         }
 
-        val password = binding.passwordField.text.toString().trim()
         if(TextUtils.isEmpty(password)) {
-            binding.passwordField.error = "This field is required."
+            binding.passwordFieldLayout.helperText = getString(R.string.signForm_helperText)
+            binding.passwordFieldLayout.isHelperTextEnabled = true
             valid = false
         } else {
             binding.passwordField.error = null
+            binding.passwordFieldLayout.helperText = getString(R.string.blank)
+            binding.passwordFieldLayout.isHelperTextEnabled = false
         }
 
         return valid
+    }
+
+    private fun cleanErrors(inputText: TextInputEditText, inputLayout: TextInputLayout) {
+        inputText.error = null
+        inputLayout.isHelperTextEnabled = false
+        inputLayout.helperText = getString(R.string.blank)
     }
 
     companion object {

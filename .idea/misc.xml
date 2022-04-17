@@ -3,13 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/erick/AndroidStudioProjects/LoginFirebase/app/src/main/res/drawable/circle_user_solid.xml" value="0.2455" />
+        <entry key="..\:/Users/erick/AndroidStudioProjects/LoginFirebase/app/src/main/res/font/montserrat.xml" value="0.375" />
         <entry key="..\:/Users/erick/AndroidStudioProjects/LoginFirebase/app/src/main/res/layout/activity_base.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/erick/AndroidStudioProjects/LoginFirebase/app/src/main/res/layout/activity_email_verification.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/erick/AndroidStudioProjects/LoginFirebase/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/Users/erick/AndroidStudioProjects/LoginFirebase/app/src/main/res/layout/activity_login.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/erick/AndroidStudioProjects/LoginFirebase/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/erick/AndroidStudioProjects/LoginFirebase/app/src/main/res/layout/activity_user_init_config.xml" value="0.33" />
         <entry key="..\:/Users/erick/AndroidStudioProjects/LoginFirebase/app/src/main/res/layout/create_account.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/erick/AndroidStudioProjects/LoginFirebase/app/src/main/res/layout/email_verification.xml" value="0.5" />
         <entry key="..\:/Users/erick/AndroidStudioProjects/LoginFirebase/app/src/main/res/layout/loading_item.xml" value="0.34479166666666666" />
-        <entry key="..\:/Users/erick/AndroidStudioProjects/LoginFirebase/app/src/main/res/layout/main_activity.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/erick/AndroidStudioProjects/LoginFirebase/app/src/main/res/layout/main_activity.xml" value="0.6626626626626627" />
       </map>
     </option>
   </component>

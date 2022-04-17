@@ -22,12 +22,17 @@
             tools:ignore="ImageContrastCheck" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/newEmailLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:hint="@string/new_email_label_hint"
             app:errorEnabled="true"
+            app:boxStrokeErrorColor="@color/red_error"
+            app:helperTextTextColor="@color/red_error"
+            app:helperText="@string/blank"
+            app:errorContentDescription="@string/signForm_helperText"
             app:startIconDrawable="@drawable/ic_email">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -39,12 +44,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/newPasswordLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:hint="@string/new_password_label_hint"
             app:errorEnabled="true"
+            app:boxStrokeErrorColor="@color/red_error"
+            app:helperTextTextColor="@color/red_error"
+            app:errorContentDescription="@string/signForm_helperText"
+            app:helperText="@string/blank"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -56,12 +66,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/confirmPasswordLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:hint="@string/confirm_password_label_hint"
             app:errorEnabled="true"
+            app:boxStrokeErrorColor="@color/red_error"
+            app:helperTextTextColor="@color/red_error"
+            app:errorContentDescription="@string/signForm_helperText"
+            app:helperText="@string/blank"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText

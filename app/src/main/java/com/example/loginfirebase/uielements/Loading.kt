@@ -14,7 +14,7 @@ class Loading(private val currentActivity: Activity) {
         // Set Dialog
         val builder = AlertDialog.Builder(currentActivity)
         builder.setView(dialogView)
-        builder.setCancelable(false)
+        builder.setCancelable(true)
         dialog = builder.create()
         dialog.show()
     }
