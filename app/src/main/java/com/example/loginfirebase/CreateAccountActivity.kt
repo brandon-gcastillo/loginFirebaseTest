@@ -117,7 +117,7 @@ class CreateAccountActivity : AppCompatActivity() {
                 user.sendEmailVerification()
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            // email has send
+                            // email has send, user is signed as default
                             auth.signOut()
                             val intent = Intent(this, EmailVerification::class.java).apply {
                                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
